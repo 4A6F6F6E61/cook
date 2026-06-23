@@ -1,3 +1,4 @@
+import 'package:cook/tabs/ingredients/ingredients_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:cook/tabs/home/home_page.dart';
@@ -30,6 +31,12 @@ final List<Tab> tabs = [
     label: 'Recipes',
     path: '/recipes',
     builder: (_, _) => RecipesPage(),
+  ),
+  Tab(
+    icon: Icons.inventory,
+    label: 'Ingredients',
+    path: '/ingredients',
+    builder: (_, _) => IngredientsPage(),
   ),
   Tab(
     icon: Icons.account_circle,

@@ -16,6 +16,7 @@ class _NavigationState extends State<Navigation> {
     return Scaffold(
       body: widget.navigationShell,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: [
           for (final tab in tabs)
             BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
