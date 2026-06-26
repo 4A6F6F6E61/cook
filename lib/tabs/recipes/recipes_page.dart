@@ -7,7 +7,11 @@ class RecipesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Recipe')),
-      body: const Center(child: Text('Welcome to the Recipe tab!')),
+      body: const Center(
+        child: Card(
+          child: Padding(padding: EdgeInsets.all(16), child: Text('Recipe Page')),
+        ),
+      ),
     );
   }
 }

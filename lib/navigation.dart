@@ -15,11 +15,10 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.navigationShell,
+      primary: true,
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         items: [
-          for (final tab in tabs)
-            BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
+          for (final tab in tabs) BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
         ],
         currentIndex: widget.navigationShell.currentIndex,
         onTap: (index) {

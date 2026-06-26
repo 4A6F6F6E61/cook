@@ -1,3 +1,4 @@
+import 'package:cook/components/ui_button.dart';
 import 'package:material_ui/material_ui.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,7 +8,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text('Welcome to the Home tab!')),
+      body: Center(
+        child: Row(
+          children: [UIButton(label: 'Click me', onPressed: () {})],
+        ),
+      ),
     );
   }
 }
