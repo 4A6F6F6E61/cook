@@ -14,16 +14,39 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.navigationShell,
+      body: Stack(
+        children: [
+          widget.navigationShell,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 1,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Theme.of(context).dividerColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                    offset: const Offset(0, -4),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
       primary: true,
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          for (final tab in tabs) BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
+          for (final tab in tabs)
+            BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
         ],
         currentIndex: widget.navigationShell.currentIndex,
-        onTap: (index) {
-          widget.navigationShell.goBranch(index);
-        },
+        onTap: widget.navigationShell.goBranch,
       ),
     );
   }
