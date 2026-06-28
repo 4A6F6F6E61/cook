@@ -1,9 +1,12 @@
 import 'package:cook/router.dart';
 import 'package:cook/theme.dart';
+import 'package:cook/settings.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final settings = await Settings.load();
+  runApp(SettingsProvider(settings: settings, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +14,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(title: 'Cook', theme: buildTheme(.dark), routerConfig: router);
+    final settings = Settings.of(context);
+    
+    return MaterialApp.router(
+      title: 'Cook',
+      theme: buildTheme(.light),
+      darkTheme: buildTheme(.dark),
+      themeMode: settings.themeMode,
+      routerConfig: router,
+    );
   }
 }

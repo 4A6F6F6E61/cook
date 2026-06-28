@@ -40,13 +40,13 @@ class _NavigationState extends State<Navigation> {
         ],
       ),
       primary: true,
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
+      bottomNavigationBar: NavigationBar(
+        destinations: [
           for (final tab in tabs)
-            BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
+            NavigationDestination(icon: Icon(tab.icon), label: tab.label),
         ],
-        currentIndex: widget.navigationShell.currentIndex,
-        onTap: widget.navigationShell.goBranch,
+        selectedIndex: widget.navigationShell.currentIndex,
+        onDestinationSelected: widget.navigationShell.goBranch,
       ),
     );
   }

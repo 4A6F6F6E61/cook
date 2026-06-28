@@ -17,6 +17,11 @@ ThemeData buildTheme(Brightness brightness) {
       elevation: 1,
       type: BottomNavigationBarType.fixed,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: backgroundColor(brightness),
+      indicatorColor: primaryColor(brightness),
+      elevation: 1,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: backgroundColor(brightness),
       elevation: 1,
@@ -24,6 +29,7 @@ ThemeData buildTheme(Brightness brightness) {
     ),
     dividerColor: brightness == .dark ? Color(0xFF212933) : Colors.grey[300],
     brightness: brightness,
+    useMaterial3: true,
   );
 
   return baseTheme.copyWith(
