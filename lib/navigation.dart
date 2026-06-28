@@ -49,24 +49,24 @@ class _NavigationState extends State<Navigation> {
     final settings = Settings.of(context);
 
     switch (settings.navigationStyle) {
-    case BottomNavigationStyle.inkWell:
-      return BottomNavigationBar(
-        items: [
-          for (final tab in tabs)
-            BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
-        ],
-        currentIndex: widget.navigationShell.currentIndex,
-        onTap: widget.navigationShell.goBranch,
-      );
-    case BottomNavigationStyle.pill:
-      return NavigationBar(
-        destinations: [
-          for (final tab in tabs)
-            NavigationDestination(icon: Icon(tab.icon), label: tab.label),
-        ],
-        selectedIndex: widget.navigationShell.currentIndex,
-        onDestinationSelected: widget.navigationShell.goBranch,
-      );
+      case BottomNavigationStyle.inkWell:
+        return BottomNavigationBar(
+          items: [
+            for (final tab in tabs)
+              BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label),
+          ],
+          currentIndex: widget.navigationShell.currentIndex,
+          onTap: widget.navigationShell.goBranch,
+        );
+      case BottomNavigationStyle.pill:
+        return NavigationBar(
+          destinations: [
+            for (final tab in tabs)
+              NavigationDestination(icon: Icon(tab.icon), label: tab.label),
+          ],
+          selectedIndex: widget.navigationShell.currentIndex,
+          onDestinationSelected: widget.navigationShell.goBranch,
+        );
     }
   }
 }
