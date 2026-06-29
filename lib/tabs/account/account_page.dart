@@ -1,28 +1,83 @@
 import 'package:cook/settings.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = Supabase.instance.client.auth.currentUser;
+    final email = user?.email ?? 'Unknown User';
+    final initial = email.isNotEmpty ? email[0].toUpperCase() : '?';
+    final theme = Theme.of(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Account'), actions: [
-        IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {
-            showMaterialModalBottomSheet(
-              context: context,
-              expand: false,
-              backgroundColor: Colors.transparent,
-              builder: (context) => SettingsModal(context: context),
-            );
+      appBar: AppBar(
+        title: const Text('Account'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              showMaterialModalBottomSheet(
+                context: context,
+                expand: false,
+                backgroundColor: Colors.transparent,
+                builder: (context) => SettingsModal(context: context),
+              );
             },
           ),
         ],
       ),
-      body: const SizedBox()
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: theme.primaryColor.withAlpha(25),
+                child: Text(
+                  initial,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: theme.primaryColor,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Logged in as',
+                style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                email,
+                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 48),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  await Supabase.instance.client.auth.signOut();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.errorContainer,
+                  foregroundColor: theme.colorScheme.onErrorContainer,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                icon: const Icon(Icons.logout),
+                label: const Text('Sign Out'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

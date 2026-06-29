@@ -8,6 +8,11 @@ Color backgroundColor(Brightness brightness) =>
 
 ThemeData buildTheme(Brightness brightness) {
   final baseTheme = ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor(brightness),
+      primary: primaryColor(brightness),
+      brightness: brightness,
+    ),
     scaffoldBackgroundColor: backgroundColor(brightness),
     primaryColor: primaryColor(brightness),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
