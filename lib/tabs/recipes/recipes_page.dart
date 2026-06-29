@@ -1,23 +1,22 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
-class RecipesPage extends StatelessWidget {
+class RecipesPage extends HookConsumerWidget {
   const RecipesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Recipes'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {},
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.add), onPressed: () {})],
       ),
       body: const Center(
         child: Card(
-          child: Padding(padding: EdgeInsets.all(16), child: Text('Recipe Page')),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('Recipe Page'),
+          ),
         ),
       ),
     );

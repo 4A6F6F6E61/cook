@@ -5,7 +5,7 @@ part 'recipe_ingredient.freezed.dart';
 part 'recipe_ingredient.g.dart';
 
 @freezed
-class RecipeIngredient with _$RecipeIngredient {
+abstract class RecipeIngredient with _$RecipeIngredient {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RecipeIngredient({
     required String id,
